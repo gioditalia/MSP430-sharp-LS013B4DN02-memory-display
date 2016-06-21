@@ -85,12 +85,12 @@ void SHARPMemLCDTxt::print(const char* text, char line, char options)
         i = 0;
         j = 0;
         while (j < (PIXELS_X/8) && (c = text[i]) != 0) {     // while we did not reach end of line or string
-            if (c < ' ' || c > 'Z') {                        // invalid characters are replace with SPACE
+            if (c < ' ' || c > 'z') {                        // invalid characters are replace with SPACE
                 c = ' ';
             }
 
             c = c - 32;                                      // convert character to index in font table
-            b = font8x8[(c*8)+k];                            // retrieve byte defining one line of character
+            b = font8x8[c][k];                            // retrieve byte defining one line of character
 
             if (!(options & DISP_INVERT)) {                  // invert bits if DISP_INVERT is _NOT_ selected
                 b = ~b;// pixels are LOW active
